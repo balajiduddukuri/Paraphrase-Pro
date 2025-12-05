@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AI-powered tool for professional software industry communication paraphrasing." />
+    <title>Paraphrase Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Light Theme - High Contrast (WCAG AA Compliant) */
+        --bg-app: #f8fafc;
+        --bg-panel: #ffffff;
+        --text-body: #0f172a;     /* Slate 900 */
+        --text-muted: #475569;    /* Slate 600 - Ensures > 4.5:1 contrast */
+        --primary: #4f46e5;       /* Indigo 600 */
+        --primary-hover: #4338ca; /* Indigo 700 */
+        --border-base: #e2e8f0;
+        --input-bg: #f8fafc;
+        --ring-color: rgba(79, 70, 229, 0.4);
+      }
+      
+      .theme-neon {
+        /* Neon Theme - Vibe-Coding Art Fusion */
+        --bg-app: #020617;        /* Slate 950 */
+        --bg-panel: #0f172a;      /* Slate 900 */
+        --text-body: #f8fafc;     /* Slate 50 */
+        --text-muted: #cbd5e1;    /* Slate 300 - High Contrast for dark mode */
+        --primary: #22d3ee;       /* Cyan 400 */
+        --primary-hover: #06b6d4; /* Cyan 500 */
+        --border-base: #1e293b;   /* Slate 800 */
+        --input-bg: #1e293b;
+        --ring-color: rgba(34, 211, 238, 0.4);
+      }
+
+      body {
+        background-color: var(--bg-app);
+        color: var(--text-body);
+        transition: background-color 0.5s ease, color 0.3s ease;
+      }
+
+      /* Artistic Background for Neon Theme */
+      .theme-neon body {
+        background-image: 
+          radial-gradient(circle at 15% 15%, rgba(79, 70, 229, 0.07) 0%, transparent 40%), 
+          radial-gradient(circle at 85% 85%, rgba(34, 211, 238, 0.07) 0%, transparent 40%);
+        background-attachment: fixed;
+      }
+
+      /* Global Focus Styles for Accessibility */
+      :focus-visible {
+        outline: 3px solid var(--primary);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px var(--ring-color);
+        border-radius: 2px;
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Custom Scrollbar */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: var(--border-base);
+        border-radius: 20px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: var(--text-muted);
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              app: 'var(--bg-app)',
+              panel: 'var(--bg-panel)',
+              body: 'var(--text-body)',
+              muted: 'var(--text-muted)',
+              primary: 'var(--primary)',
+              'primary-hover': 'var(--primary-hover)',
+              border: 'var(--border-base)',
+              input: 'var(--input-bg)',
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+              'slide-up': 'slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-app text-body antialiased selection:bg-primary selection:text-white min-h-screen flex flex-col">
+    <div id="root" class="flex-grow flex flex-col"></div>
+  </body>
+</html>

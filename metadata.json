@@ -1,0 +1,5 @@
+{
+  "name": "Paraphrase Pro",
+  "description": "A professional tool for software industry communication that paraphrases messages into various tones using Gemini AI.",
+  "requestFramePermissions": []
+}
