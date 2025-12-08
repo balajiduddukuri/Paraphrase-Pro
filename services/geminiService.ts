@@ -1,5 +1,5 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import { ParaphraseOption, EmailDraft } from "../types";
+import { ParaphraseOption, EmailDraft, ChatMessage } from "../types";
 
 const getAIClient = () => {
   if (!process.env.API_KEY) {
@@ -112,6 +112,34 @@ export const generateEmailDraft = async (message: string, tone: string): Promise
 
   } catch (error) {
     console.error("Gemini API Error (Email):", error);
+    throw error;
+  }
+};
+
+export const askGemini = async (currentMessage: string, history: ChatMessage[] = []): Promise<string> => {
+  const ai = getAIClient();
+
+  // Convert ChatMessage[] to the format expected by the SDK for history
+  // The SDK expects: { role: 'user' | 'model', parts: [{ text: string }] }
+  const formattedHistory = history.map(msg => ({
+    role: msg.role,
+    parts: [{ text: msg.text }]
+  }));
+
+  try {
+    const chat = ai.chats.create({
+      model: "gemini-2.5-flash",
+      history: formattedHistory,
+      config: {
+        systemInstruction: "You are a helpful, expert software industry consultant. You provide concise, accurate, and professional advice about software development, team management, and technical communication."
+      }
+    });
+
+    const response = await chat.sendMessage({ message: currentMessage });
+
+    return response.text || "I couldn't generate a response. Please try again.";
+  } catch (error) {
+    console.error("Gemini API Error (Ask):", error);
     throw error;
   }
 };
